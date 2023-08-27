@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+<div class="login-container">
+    <h2>Login</h2>
+    <form onsubmit="submitLoginForm(event)">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">Login</button>
+        </div>
+    </form>
+    <div class="message" id="message"></div>
+</div>
+
+<script>
+    function submitLoginForm(event) {
+        event.preventDefault();     //The first line of the function prevents the default form submission behavior, which would cause the page to reload.
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Make an AJAX request to your Spring Boot controller
+        fetch(`/bending/login?username=${username}&password=${password}`)  //passing username and password to bending/login api which will send integer as reply
+            .then(response => response.json())                                                                     //bending/login?username=user123&password=pass456
+            .then(data => {
+                if (data === 1) {
+                    window.location.href = 'home.html';   // Redirect to the "home.html" page if login is successful
+                } else {
+                    // Display an error message if login fails
+                    document.getElementById("message").textContent = "Invalid credentials. Please try again.";
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    }
+</script>
+</body>
+</html>

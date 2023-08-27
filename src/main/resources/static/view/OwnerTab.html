@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Owner Page</title>
+    <link rel="stylesheet" href="ownertab.css">
+</head>
+<body>
+
+    <h1>Previous Users</h1>
+
+    <ul id="userList">
+    </ul>
+
+    <button id="addUserButton">Add User</button>
+    <label for="deleteUserName">Username to Delete:</label>
+    <input type="text" id="deleteUserName" name="deleteUserName" required>
+    <button id="deleteUserButton">Delete User</button>
+
+    <div id="addUserModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Add New User</h2>
+            <form id="addUserForm">
+                <label for="userName">User Name:</label>
+                <input type="text" id="userName" name="userName" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <label for="userType">User Type:</label>
+                <select id="userType" name="userType" required>
+                    <option value="regular">Regular</option>
+                    <option value="owner">Owner</option>
+                </select>
+                <label for="salary">Salary:</label>
+                <input type="number" id="salary" name="salary" required>
+                <button type="submit">Add User</button>
+            </form>
+        </div>
+    </div>
+
+<script src="ownerTab.js"></script>
+</body>
+</html>
+
+
+
+
+
+
